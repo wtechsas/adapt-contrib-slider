@@ -1,0 +1,469 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://jsonschema.net",
+  "$ref": "http://localhost/plugins/content/component/model.schema",
+  "globals": {
+    "ariaRegion": {
+      "type": "string",
+      "required": true,
+      "title": "Región del componente",
+      "default": "Deslizador. Responda a la pregunta seleccionando un valor en la escala.",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    },
+    "ariaCorrectAnswer": {
+      "type": "string",
+      "required": true,
+      "title": "Respuesta correcta",
+      "default": "La respuesta correcta es {{{correctAnswer}}}",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Texto que anunciará el lector de pantalla cuando el alumno seleccione el botón de 'respuesta correcta' (y solo hay una respuesta correcta)",
+      "translatable": true
+    },
+    "ariaCorrectAnswerRange": {
+      "type": "string",
+      "required": true,
+      "title": "Rango de respuesta correcta",
+      "default": "La respuesta correcta es cualquier valor de {{{bottom}}} a {{{top}}}",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Texto que anunciará el lector de pantalla cuando el alumno seleccione el botón de 'respuesta correcta' (y hay una variedad de respuestas correctas)",
+      "translatable": true
+    },
+    "ariaUserAnswer": {
+      "type": "string",
+      "required": true,
+      "title": "Respuesta seleccionada",
+      "default": "La respuesta seleccionada fue {{{userAnswer}}}",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Texto que será anunciado por el lector de pantalla cuando el alumno seleccione el botón 'Ocultar respuesta correcta'",
+      "translatable": true
+    },
+    "labelStart": {
+      "type": "string",
+      "required": false,
+      "default": "Inicio de la escala",
+      "title": "Inicio de la escala",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Etiqueta para el inicio de la escala del deslizador",
+      "translatable": true
+    },
+    "labelEnd": {
+      "type": "string",
+      "required": false,
+      "default": "Fin de la escala",
+      "title": "Fin de la escala",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Etiqueta para el final de la escala del deslizador",
+      "translatable": true
+    }
+  },
+  "properties": {
+    "_supportedLayout": {
+      "type": "string",
+      "required": true,
+      "enum": ["full-width", "half-width", "both"],
+      "default": "both",
+      "editorOnly": true
+    },
+    "instruction": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Instrucciones",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Instrucciones que se mostrarán en este componente.",
+      "translatable": true
+    },
+    "_attempts": {
+      "type": "number",
+      "required": true,
+      "default": 1,
+      "title": "Intentos",
+      "inputType": "Number",
+      "validators": ["required", "number"],
+      "help": "Número de intentos permitidos"
+    },
+    "_canShowModelAnswer": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar respuesta correcta",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "¿Permitir que el usuario vea la 'respuesta correcta' si responde la pregunta incorrectamente?"
+    },
+    "_canShowFeedback": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar retroalimentación",
+      "inputType": "Checkbox",
+      "validators": []
+    },
+    "_canShowMarking": {
+      "type": "boolean",
+      "default": true,
+      "title": "Mostrar respuesta seleccionada",
+      "inputType": "Checkbox",
+      "validators": []
+    },
+    "_shouldDisplayAttempts": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "title": "Mostrar intentos",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "¿Mostrar el número de intentos restantes?"
+    },
+    "_questionWeight": {
+      "type": "number",
+      "required": false,
+      "default": 1,
+      "title": "Puntuación de la pregunta",
+      "inputType": "Number",
+      "validators": ["number"],
+      "help": "Cuanto puntaje tiene esta pregunta"
+    },
+    "_recordInteraction": {
+      "type": "boolean",
+      "required": false,
+      "default": true,
+      "title": "Guardar interacción",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Si está deshabilitado, el registro de las respuestas del usuario a esta pregunta en cmi.interactions en el LMS se deshabilitará solo para este componente."
+    },
+    "labelStart": {
+      "type": "string",
+      "required": false,
+      "default": "Inicio de la escala",
+      "title": "Texto - Inicio de la escala",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Etiqueta para el inicio de la escala del deslizador",
+      "translatable": true
+    },
+    "labelEnd": {
+      "type": "string",
+      "required": false,
+      "default": "Fin de la escala",
+      "title": "Texto - Fin de la escala",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Etiqueta para el final de la escala deslizante",
+      "translatable": true
+    },
+    "_scaleStart": {
+      "type": "number",
+      "required": true,
+      "default": 1,
+      "title": "Inicio de escala",
+      "inputType": "Number",
+      "validators": ["required", "number"],
+      "help": "En qué número debe comenzar la escala"
+    },
+    "_scaleEnd": {
+      "type": "number",
+      "required": true,
+      "default": 1,
+      "title": "Fin de escala",
+      "inputType": "Number",
+      "validators": ["required", "number"],
+      "help": "en que numero debe terminar la escala"
+    },
+    "_scaleStep": {
+      "type": "number",
+      "required": false,
+      "default": 1,
+      "title": "Saltos de escala",
+      "inputType": "Number",
+      "validators": ["number"],
+      "help": "Cantidad que debe incrementar el deslizador"
+    },
+    "_correctAnswer": {
+      "type": "string",
+      "default": "",
+      "title": "Respuesta correcta",
+      "inputType": "Text",
+      "validators": [],
+      "help": "Respuesta correcta en la escala"
+    },
+    "_correctRange": {
+      "type": "object",
+      "properties": {
+        "_bottom": {
+          "type": "number",
+          "default": 0,
+          "title": "Rango inferior correcto",
+          "inputType": "Number",
+          "validators": ["number"],
+          "help": "Respuesta correcta del rango inferior en la escala: se ignora cuando se configura 'Respuesta correcta'"
+        },
+        "_top": {
+          "type": "number",
+          "default": 0,
+          "title": "Rango superior correcto",
+          "inputType": "Number",
+          "validators": ["number"],
+          "help": "Respuesta correcta del rango superior en la escala: se ignora cuando se configura 'Respuesta correcta'"
+        }
+      }
+    },
+    "_showScaleIndicator": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar indicador de posición",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controla si se debe mostrar o no un indicador de posición en la escala"
+    },
+    "_showNumber": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar número en el indicador",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controla si el número de posición en el indicador debe mostrarse o no"
+    },
+    "_showScale": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar escala",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controla si mostrar las líneas y los números de la escala o no"
+    },
+    "_showScaleNumbers": {
+      "type": "boolean",
+      "required": true,
+      "default": true,
+      "title": "Mostrar números de escala",
+      "inputType": "Checkbox",
+      "validators": [],
+      "help": "Controla si los números en la escala deben mostrarse o no"
+    },
+    "_feedback": {
+      "type": "object",
+      "required": false,
+      "title": "Retroalimentación",
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Título de la retroalimentación",
+          "inputType": "Text",
+          "validators": [],
+          "help": "Si se deja en blanco en su lugar se muestra el título del componente.",
+          "translatable": true
+        },
+        "correct": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Retroalimentacion - Respuesta correcta",
+          "inputType": "TextArea",
+          "validators": [],
+          "help": "Retroalimentacion de respuesta correcta para esta pregunta",
+          "translatable": true
+        },
+        "_incorrect": {
+          "type": "object",
+          "required": false,
+          "title": "Retroalimentacion - Respuesta incorrecta",
+          "properties": {
+            "final": {
+              "type": "string",
+              "required": false,
+              "default": "",
+              "title": "Retroalimentacion - Intento final incorrecto",
+              "inputType": "TextArea",
+              "validators": [],
+              "help": "Retroalimentacion de respuesta incorrecta para el intento final",
+              "translatable": true
+            },
+            "notFinal": {
+              "type": "string",
+              "required": false,
+              "default": "",
+              "title": "Retroalimentacion - Intento parcial",
+              "inputType": "TextArea",
+              "validators": [],
+              "help": "Retroalimentación de respuesta incorrecta para cualquier intento excepto el último intento. Si deja esto en blanco, se usará la retroalimentación 'Retroalimentacion - Intento final incorrecto' en su lugar.",
+              "translatable": true
+            }
+          }
+        }
+      }
+    },
+    "_buttons": {
+      "type": "object",
+      "title": "Botones",
+      "required": false,
+      "properties": {
+        "_submit": {
+          "type": "object",
+          "title": "Enviar",
+          "properties": {
+            "buttonText": {
+              "type": "string",
+              "required": false,
+              "default": "Enviar",
+              "title": "Texto del botón",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Texto de la etiqueta del botón para el botón Enviar",
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": false,
+              "default": "Enviar",
+              "title": "Texto etiqueta ARIA",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Etiqueta de Aria para el botón de enviar",
+              "translatable": true
+            }
+          }
+        },
+        "_reset": {
+          "type": "object",
+          "title": "Reiniciar",
+          "properties": {
+            "buttonText": {
+              "type": "string",
+              "required": false,
+              "default": "Reiniciar",
+              "title": "Texto del botón",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Texto de la etiqueta del botón para el botón de reinicio",
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": false,
+              "default": "Reiniciar",
+              "title": "Texto etiqueta ARIA",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Etiqueta Aria para el botón de reinicio",
+              "translatable": true
+            }
+          }
+        },
+        "_showCorrectAnswer": {
+          "type": "object",
+          "title": "Mostrar respuesta correcta",
+          "properties": {
+            "buttonText": {
+              "type": "string",
+              "required": false,
+              "default": "Ver respuesta correcta",
+              "title": "Texto del botón",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Texto de la etiqueta del botón para mostrar la respuesta del modelo",
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": false,
+              "default": "Ver respuesta correcta",
+              "title": "Texto etiqueta ARIA",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Etiqueta de Aria para el botón Mostrar modelo de respuesta",
+              "translatable": true
+            }
+          }
+        },
+        "_hideCorrectAnswer": {
+          "type": "object",
+          "title": "Ocultar respuesta correcta",
+          "properties": {
+            "buttonText": {
+              "type": "string",
+              "required": false,
+              "default": "Ocultar respuesta correcta",
+              "title": "Texto del botón",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Texto de la etiqueta del botón para ocultar la respuesta del modelo",
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": false,
+              "default": "Ocultar respuesta correcta",
+              "title": "Texto etiqueta ARIA",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Etiqueta de Aria para el botón de respuesta modelo oculto",
+              "translatable": true
+            }
+          }
+        },
+        "_showFeedback": {
+          "type": "object",
+          "title": "Mostrar retroalimentación",
+          "properties": {
+            "buttonText": {
+              "type": "string",
+              "required": false,
+              "default": "Ver retroalimentación",
+              "title": "Texto del botón",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Texto de la etiqueta del botón para mostrar retroalimentación",
+              "translatable": true
+            },
+            "ariaLabel": {
+              "type": "string",
+              "required": false,
+              "default": "Ver retroalimentación",
+              "title": "Texto etiqueta ARIA",
+              "inputType": "QuestionButton",
+              "validators": [],
+              "help": "Etiqueta de Aria para el botón mostrar retroalimentación",
+              "translatable": true
+            }
+          }
+        },
+        "remainingAttemptsText": {
+          "type": "string",
+          "required": false,
+          "default": "Intentos restantes",
+          "title": "Texto de intentos restantes",
+          "inputType": "QuestionButton",
+          "validators": [],
+          "help": "Se muestra cuando queden varios intentos",
+          "translatable": true
+        },
+        "remainingAttemptText": {
+          "type": "string",
+          "required": false,
+          "default": "Último intento",
+          "title": "Texto de intento final",
+          "inputType": "QuestionButton",
+          "validators": [],
+          "help": "Se muestra cuando quede un intento",
+          "translatable": true
+        }
+      }
+    }
+  }
+}
