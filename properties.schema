@@ -20,7 +20,7 @@
       "default": "La respuesta correcta es {{{correctAnswer}}}",
       "inputType": "Text",
       "validators": [],
-      "help": "Texto que anunciará el lector de pantalla cuando el alumno seleccione el botón de 'respuesta correcta' (y solo hay una respuesta correcta)",
+      "help": "Texto que anunciará el lector de pantalla cuando el estudiante seleccione el botón de 'respuesta correcta' (y solo hay una respuesta correcta)",
       "translatable": true
     },
     "ariaCorrectAnswerRange": {
@@ -30,7 +30,7 @@
       "default": "La respuesta correcta es cualquier valor de {{{bottom}}} a {{{top}}}",
       "inputType": "Text",
       "validators": [],
-      "help": "Texto que anunciará el lector de pantalla cuando el alumno seleccione el botón de 'respuesta correcta' (y hay una variedad de respuestas correctas)",
+      "help": "Texto que anunciará el lector de pantalla cuando el estudiante seleccione el botón de 'respuesta correcta' (y hay una variedad de respuestas correctas)",
       "translatable": true
     },
     "ariaUserAnswer": {
@@ -40,7 +40,7 @@
       "default": "La respuesta seleccionada fue {{{userAnswer}}}",
       "inputType": "Text",
       "validators": [],
-      "help": "Texto que será anunciado por el lector de pantalla cuando el alumno seleccione el botón 'Ocultar respuesta correcta'",
+      "help": "Texto que será anunciado por el lector de pantalla cuando el estudiante seleccione el botón 'Ocultar respuesta correcta'",
       "translatable": true
     },
     "labelStart": {
