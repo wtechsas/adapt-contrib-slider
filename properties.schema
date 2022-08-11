@@ -104,16 +104,18 @@
       "type": "boolean",
       "required": true,
       "default": true,
-      "title": "Mostrar retroalimentación",
+      "title": "Mostrar realimentación",
       "inputType": "Checkbox",
-      "validators": []
+      "validators": [],
+      "help": "Muestra una realimentación dependiendo de la respuesta del estudiante."
     },
     "_canShowMarking": {
       "type": "boolean",
       "default": true,
       "title": "Mostrar respuesta seleccionada",
       "inputType": "Checkbox",
-      "validators": []
+      "validators": [],
+      "help": "Muestra la respuesta seleccionada por el estudiante."
     },
     "_shouldDisplayAttempts": {
       "type": "boolean",
@@ -149,7 +151,7 @@
       "title": "Texto - Inicio de la escala",
       "inputType": "Text",
       "validators": [],
-      "help": "Etiqueta para el inicio de la escala del deslizador",
+      "help": "Etiqueta para el inicio de la escala del control deslizante.",
       "translatable": true
     },
     "labelEnd": {
@@ -159,7 +161,7 @@
       "title": "Texto - Fin de la escala",
       "inputType": "Text",
       "validators": [],
-      "help": "Etiqueta para el final de la escala deslizante",
+      "help": "Etiqueta para el final de la escala del control deslizante.",
       "translatable": true
     },
     "_scaleStart": {
@@ -178,7 +180,7 @@
       "title": "Fin de escala",
       "inputType": "Number",
       "validators": ["required", "number"],
-      "help": "en que numero debe terminar la escala"
+      "help": "En qué número debe terminar la escala"
     },
     "_scaleStep": {
       "type": "number",
@@ -187,7 +189,7 @@
       "title": "Saltos de escala",
       "inputType": "Number",
       "validators": ["number"],
-      "help": "Cantidad que debe incrementar el deslizador"
+      "help": "Cantidad que debe incrementar el control deslizante."
     },
     "_correctAnswer": {
       "type": "string",
