@@ -6,7 +6,7 @@
   "bugs": "https://github.com/wtechsas/adapt-contrib-slider/issues",
   "component" : "slider",
   "targetAttribute": "_slider",
-  "displayName" : "Deslizador",
+  "displayName" : "Control deslizante",
   "description": "Un componente de preguntas que permite posicionar un deslizador en una escala",
   "main": "/js/adapt-contrib-slider.js",
   "keywords": [
